@@ -1,16 +1,198 @@
----
-
----
-
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <h1>HOLA MI KATERIN</h1>
+    <div class="greetings">
+      <div class="word">
+        <span>F</span>
+        <span>e</span>
+        <span>l</span>
+        <span>i</span>
+        <span>z</span>
+      </div>
+      <div class="word">
+        <span>c</span>
+        <span>u</span>
+        <span>m</span>
+        <span>p</span>
+        <span>l</span>
+        <span>e</span>
+        <span>a</span>
+        <span>ñ</span>
+        <span>o</span>
+        <span>s</span>
+        <span>!</span>
+      </div>
+    </div>
+    <div class="description">
+      <span>ESTE DETALLE ES PARA TI :)</span>
+    </div>
+    <div class="button">
+      <button class="botones">
+        <a href="/src/pages/flower.astro" style="color: #fff;">CLICK AQUÍ</a>
+      </button>
+	  <button class="botones">
+        <a href="/src/pages/carta.astro" style="color: #fff;">VER CARTA</a>
+      </button>
+    </div>
+  </body>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+
+    * {
+      font-family: 'Poppins', cursive;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      color: rgb(189, 3, 149);
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: black;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .botones {
+      padding: 9px;
+      border-radius: 80px;
+      background-color: transparent;
+      border: none;
+    }
+
+    .botones a {
+      background-color: #0a2be9;
+      padding: 9px 18px;
+      border-radius: 80px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .botones a:focus {
+      background-color: rgb(50, 194, 194);
+    }
+
+    .greetings {
+      font-size: 7rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .greetings .word {
+      display: inline-block;
+    }
+
+    .greetings > .word > span {
+      animation: glow 2.5s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        color: #FF00FF;
+        text-shadow: 0 0 12px #39c6d6, 0 0 50px #39c6d6, 0 0 100px #39c6d6;
+      }
+      10%, 90% {
+        color: #FF00E1;
+        text-shadow: none;
+      }
+    }
+
+    /* Animation delays for spans */
+    .greetings .word:nth-child(1) > span:nth-child(1) { animation-delay: 0s; }
+    .greetings .word:nth-child(1) > span:nth-child(2) { animation-delay: 0.1s; }
+    .greetings .word:nth-child(1) > span:nth-child(3) { animation-delay: 0.2s; }
+    .greetings .word:nth-child(1) > span:nth-child(4) { animation-delay: 0.3s; }
+    .greetings .word:nth-child(1) > span:nth-child(5) { animation-delay: 0.4s; }
+    .greetings .word:nth-child(2) > span:nth-child(1) { animation-delay: 0.6s; }
+    .greetings .word:nth-child(2) > span:nth-child(2) { animation-delay: 0.7s; }
+    .greetings .word:nth-child(2) > span:nth-child(3) { animation-delay: 0.8s; }
+    .greetings .word:nth-child(2) > span:nth-child(4) { animation-delay: 0.9s; }
+    .greetings .word:nth-child(2) > span:nth-child(5) { animation-delay: 1.0s; }
+    .greetings .word:nth-child(2) > span:nth-child(6) { animation-delay: 1.1s; }
+    .greetings .word:nth-child(2) > span:nth-child(7) { animation-delay: 1.2s; }
+    .greetings .word:nth-child(2) > span:nth-child(8) { animation-delay: 1.3s; }
+    .greetings .word:nth-child(2) > span:nth-child(9) { animation-delay: 1.4s; }
+    .greetings .word:nth-child(2) > span:nth-child(10) { animation-delay: 1.5s; }
+    .greetings .word:nth-child(2) > span:nth-child(11) { animation-delay: 1.6s; }
+
+    .description {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .button {
+      text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .greetings {
+        font-size: 4rem;
+        font-weight: 800;
+      }
+
+      .greetings .word {
+        display: block;
+      }
+
+      .greetings .word:nth-child(2) {
+        font-size: 3rem; /* Smaller font size for Cumpleaños */
+      }
+
+      .description {
+        font-size: 1.2rem;
+      }
+
+      .botones a {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .greetings {
+        font-size: 2.5rem;
+        font-weight: 800;
+      }
+
+      .greetings .word:nth-child(2) {
+        font-size: 1.8rem; /* Even smaller font size for Cumpleaños on smaller screens */
+      }
+
+      .description {
+        font-size: 1rem;
+      }
+
+      .botones a {
+        font-size: 0.8rem;
+        padding: 7px 14px;
+      }
+    }
+  </style>
 </html>
