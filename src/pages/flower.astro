@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="img/flowers.png" type="image/x-icon" />
+    <link rel="icon" href="/img/flowers.png" type="image/x-icon" />
     <title>Flower</title>
   </head>
   <body class="container">
@@ -325,8 +326,68 @@
         </div>
       </div>
     </div>
-    <script src="anim.js"></script>
-    <script src="main.js"></script>
+    <!-- Incluir anim.astro como componente -->
+    <!-- Si anim.astro está en la misma carpeta (pages) -->
+    <script is:inline>
+      // Código de main.js integrado directamente
+      if (typeof window !== 'undefined') {
+        window.addEventListener('load', () => {
+          document.body.classList.remove("container");
+        });
+      }
+    </script>
+
+    <!-- Código de animaciones (originalmente en anim.jsx) -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const audio = document.querySelector("audio");
+        const lyrics = document.querySelector("#lyrics");
+
+        const lyricsData = [
+          { text: "At the time", time: 15 },
+          // ... (resto de tus datos de letras)
+          { text: "Love.", time: 140 }
+        ];
+
+        function updateLyrics() {
+          if (!audio || !lyrics) return;
+          
+          const time = Math.floor(audio.currentTime);
+          const currentLine = lyricsData.find(
+            (line) => time >= line.time && time < line.time + 6
+          );
+
+          if (currentLine) {
+            const fadeInDuration = 0.1;
+            const opacity = Math.min(1, (time - currentLine.time) / fadeInDuration);
+            lyrics.style.opacity = opacity;
+            lyrics.textContent = currentLine.text;
+          } else {
+            lyrics.style.opacity = 0;
+            lyrics.textContent = "";
+          }
+        }
+
+        const interval = setInterval(updateLyrics, 1000);
+
+        function hideTitle() {
+          const title = document.querySelector(".titulo");
+          if (title) {
+            title.style.animation = "fadeOut 3s ease-in-out forwards";
+            setTimeout(() => {
+              title.style.display = "none";
+            }, 3000);
+          }
+        }
+
+        setTimeout(hideTitle, 216000);
+
+        // Limpieza al desmontar
+        window.addEventListener('beforeunload', () => {
+          clearInterval(interval);
+        });
+      });
+    </script>
   </body>
   <style>
     *,

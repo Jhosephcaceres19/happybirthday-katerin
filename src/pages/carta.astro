@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-    <title>San Valentin Carta 1v</title>
+    <title>San Valentin Carta</title>
 </head>
 <body>
     <h1>¡Feliz Cumpleaños! ❤️</h1>
@@ -26,8 +27,7 @@
                             Con todo mi cariño y mi mejor versión de felicidad para ti, <br> <strong>Tu persona que te admira y te ama con todo el corazón.</strong> ❤️<br><br>
                             
                             <span style="font-size: 0.9em; color: grey;">PD: Si la felicidad tuviera un nombre... sin duda sería Katerin.</span>
-                            
-                            </p>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -36,230 +36,237 @@
             <div class="solapa-izquierda"></div>
         </div>
     </div>
-    <!-- <script src="script_v2.js"></script> -->
-     <script src="script_v2.js"></script>
-</body>
-<style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-:root {
-    --primario: #fff;
-    --fondo: #ffebf2; 
-    --fondo-sobre: #ffe3ed; 
-    --solapa-sobre: #ffccd5; 
-    --cuerpo-sobre: #ffc1d1; 
-    --sombra: rgba(0, 0, 0, 0.2);
-    --texto: #003049; 
-    --corazon: #ff477e; 
-}
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", () => {
+            const envoltura = document.querySelector(".envoltura-sobre");
+            const carta = document.querySelector(".carta");
 
-body {
-    background: var(--fondo);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-}
+            document.addEventListener("click", (e) => {
+                if (e.target.matches(".sobre") || 
+                    e.target.matches(".solapa-derecha") ||
+                    e.target.matches(".solapa-izquierda") ||
+                    e.target.matches(".corazon")) {
+                    envoltura.classList.toggle("abierto");
+                  
+                } else if (e.target.matches(".sobre *")) {
+                    if (!carta.classList.contains("abierta")) {
+                        carta.classList.add("mostrar-carta");
 
-h1 {
-    font-family: "Marck Script", serif; 
-    text-align: center;
-    font-size: 60px;
-    margin-bottom: 50px;
-    color: #444;
-}
+                        setTimeout(() => {
+                            carta.classList.remove("mostrar-carta");
+                            carta.classList.add("abierta");
+                        }, 500);
+                        envoltura.classList.add("desactivar-sobre")
+                    } else {
+                        carta.classList.add("cerrando-carta");
+                        envoltura.classList.remove("desactivar-sobre");
 
-.contenedor {
-    width: 400px;
-}
+                        setTimeout(() => {
+                            carta.classList.remove("cerrando-carta")
+                            carta.classList.remove("abierta")
+                        }, 500);
+                    }
+                } 
+            });
+        });
+    </script>
 
-.envoltura-sobre {
-    position: relative;
-    background-color: var(--fondo-sobre);
-    box-shadow: 0 0 40px var(--sombra);
-    border-radius: 15px;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.sobre {
-    position: relative;
-    width: 400px;
-    height: 300px;
-}
+        :root {
+            --primario: #fff;
+            --fondo: #ffebf2; 
+            --fondo-sobre: #ffe3ed; 
+            --solapa-sobre: #ffccd5; 
+            --cuerpo-sobre: #ffc1d1; 
+            --sombra: rgba(0, 0, 0, 0.2);
+            --texto: #003049; 
+            --corazon: #ff477e; 
+        }
 
-.sobre::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 4;
-    border-top: 180px solid var(--solapa-sobre);
-    border-right: 200px solid transparent;
-    border-left: 200px solid transparent;
-    transform-origin: top;
-    transition: all 0.5s ease-in-out 0.7s;
-    border-radius: 10px;
-}
+        body {
+            background: var(--fondo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+        }
 
-.solapa-derecha {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(100% 0, 0 100%, 100% 100%);
-    background-color: var(--cuerpo-sobre);
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
+        h1 {
+            font-family: "Marck Script", serif; 
+            text-align: center;
+            font-size: 60px;
+            margin-bottom: 50px;
+            color: #444;
+        }
 
-.solapa-izquierda {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    clip-path: polygon(0 0, 0 100%, 100% 100%);
-    background-color: var(--cuerpo-sobre);
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
+        .contenedor {
+            width: 400px;
+        }
 
-.carta {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--primario);
-    text-align: center;
-    box-shadow: 0 0 5px var(--sombra);
-    padding: 20px;
-    border-radius: 10px;
-    transition: transform .5s ease-in-out;
-}
+        .envoltura-sobre {
+            position: relative;
+            background-color: var(--fondo-sobre);
+            box-shadow: 0 0 40px var(--sombra);
+            border-radius: 15px;
+        }
 
-.contenido {
-    font-family: "Gill Sans", Calibri, sans-serif;
-    color: var(--texto);
-    text-align: left;
-    font-size: 12px;
-    border: 3px dotted var(--texto);
-    padding: 10px;
-    height: 100%;
-    line-height: 14px;
-    cursor: pointer;
-    overflow-Y: scroll;
-}
+        .sobre {
+            position: relative;
+            width: 400px;
+            height: 300px;
+        }
 
-.corazon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30px;
-    height: 30px;
-    background-color: var(--corazon);
-    transform: translate(-50%,0) rotate(45deg);
-    transition: transform 0.5s ease-in-out 1s;
-    z-index: 999;
-    cursor: pointer;
-}
+        .sobre::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 4;
+            border-top: 180px solid var(--solapa-sobre);
+            border-right: 200px solid transparent;
+            border-left: 200px solid transparent;
+            transform-origin: top;
+            transition: all 0.5s ease-in-out 0.7s;
+            border-radius: 10px;
+        }
 
-.corazon::before,
-.corazon::after {
-    content: "";
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: var(--corazon);
-    border-radius: 100%;
+        .solapa-derecha {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(100% 0, 0 100%, 100% 100%);
+            background-color: var(--cuerpo-sobre);
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
 
-}
+        .solapa-izquierda {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(0 0, 0 100%, 100% 100%);
+            background-color: var(--cuerpo-sobre);
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
 
-.corazon:before {
-    top: -15px;
-}
+        .carta {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primario);
+            text-align: center;
+            box-shadow: 0 0 5px var(--sombra);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform .5s ease-in-out;
+        }
 
-.corazon:after {
-    right: 15px;
-}
+        .contenido {
+            font-family: "Gill Sans", Calibri, sans-serif;
+            color: var(--texto);
+            text-align: left;
+            font-size: 12px;
+            border: 3px dotted var(--texto);
+            padding: 10px;
+            height: 100%;
+            line-height: 14px;
+            cursor: pointer;
+            overflow-Y: scroll;
+        }
 
-/*Agregar clases dinamicos*/
-.abierto .sobre::before {
-    transform: rotateX(180deg);
-    z-index: 0;
-}
+        .corazon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: var(--corazon);
+            transform: translate(-50%,0) rotate(45deg);
+            transition: transform 0.5s ease-in-out 1s;
+            z-index: 999;
+            cursor: pointer;
+        }
 
-.abierto .corazon {
-    transform: rotate(90deg);
-    transition-delay: 0.4s;
-}
+        .corazon::before,
+        .corazon::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--corazon);
+            border-radius: 100%;
+        }
 
-.carta.mostrar-carta {
-    transform: translateY(-290px);
-    transition: transform .5s ease-in-out;
-}
+        .corazon:before {
+            top: -15px;
+        }
 
-.carta.cerrando-carta {
-    transform: translateY(-290px);
-    transition: transform .5s ease-in-out;
-}
+        .corazon:after {
+            right: 15px;
+        }
 
-.carta.abierta {
-    z-index: 10000;
-}
+        /*Agregar clases dinamicos*/
+        .abierto .sobre::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
 
-.envoltura-sobre.desactivar-sobre .sobre::before {
-    pointer-events: none;
-}
+        .abierto .corazon {
+            transform: rotate(90deg);
+            transition-delay: 0.4s;
+        }
 
-/*Scroll personalizado*/
+        .carta.mostrar-carta {
+            transform: translateY(-290px);
+            transition: transform .5s ease-in-out;
+        }
 
-/*
-::-webkit-scrollbar {
-    width: 8px;
-}
+        .carta.cerrando-carta {
+            transform: translateY(-290px);
+            transition: transform .5s ease-in-out;
+        }
 
-::-webkit-scrollbar-track {
-    background-color: transparent;
-}
+        .carta.abierta {
+            z-index: 10000;
+        }
 
+        .envoltura-sobre.desactivar-sobre .sobre::before {
+            pointer-events: none;
+        }
 
-::-webkit-scrollbar-thumb {
-    background-color: var(--cuerpo-sobre);
-    border-radius: 4px;
-}
+        /*Vista celular*/
+        @media screen and (max-width:400px) {
+            .contenedor {
+                width: 300px;
+            }
 
+            .sobre {
+                width: 300px;
+                height: 250px;
+            }
 
-::-webkit-scrollbar-thumb:hover {
-    background-color: var(--corazon);
-}
-*/
-
-/*Vista celular*/
-
-@media screen and (max-width:400px) {
-    .contenedor {
-        width: 300px;
-    }
-
-    .sobre {
-        width: 300px;
-        height: 250px;
-    }
-
-    .sobre::before {
-        border-top:150px solid var(--solapa-sobre) ;
-        border-right: 150px solid transparent;
-        border-left: 150px solid transparent;
-    }
-
-}
-</style>
+            .sobre::before {
+                border-top:150px solid var(--solapa-sobre) ;
+                border-right: 150px solid transparent;
+                border-left: 150px solid transparent;
+            }
+        }
+    </style>
 </html>
